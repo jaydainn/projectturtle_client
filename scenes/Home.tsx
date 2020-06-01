@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
 
 const Home = () => {
     const [time , setTime] = useState<any>()
-    const [latitude , setLatitude] = useState<number>()
-    const [longitude , setLongitude] = useState<number>()
+    const [latitude , setLatitude] = useState<any>()
+    const [longitude , setLongitude] = useState<any>()
 
     useEffect(() => {
         moment().locale('fr')
@@ -53,7 +53,7 @@ const Home = () => {
         <View  >
             <MapView  style={styles.mapStyle} >
                 {longitude? 
-                <Marker title="🐢" description={moment(time).format("LTS")} coordinate={{latitude : latitude , longitude : longitude}} />
+                <Marker title="🐢" description={time} coordinate={{latitude : latitude , longitude : longitude}} />
                 :
                 <></>
                 
@@ -66,7 +66,7 @@ const Home = () => {
             <View  style={styles.bottomBar}>
                 {time?
                 <View>
-                    <Text  style={{color: "white" , fontWeight : "800" ,fontSize:34}}>{moment(time).format('LTS')}</Text>
+                    <Text  style={{color: "white" , fontWeight : "800" ,fontSize:34}}>{time}</Text>
                     <Text style={{color: "white" ,fontWeight : "500", fontSize:24}}>Derniere position: </Text>
                     <View style={{paddingBottom :10 , paddingTop : 10}}>
                     <Text style={{color: "white"}}>{latitude}</Text>
