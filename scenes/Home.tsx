@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
       bottomBar : {
           width : Dimensions.get('window').width ,
           height : Dimensions.get('window').height/100 * 20 ,
-          backgroundColor : "#222222" , 
+          backgroundColor : "rgba(0,0,0,.7)" , 
           bottom :0 ,
           borderTopLeftRadius : 23,
           borderTopRightRadius : 23,
@@ -27,18 +27,18 @@ const styles = StyleSheet.create({
 
 const Home = () => {
     const [time , setTime] = useState<any>()
-    const [latitude , setLatitude] = useState<any>()
-    const [longitude , setLongitude] = useState<any>()
+    const [latitude , setLatitude] = useState<number>()
+    const [longitude , setLongitude] = useState<number>()
 
     useEffect(() => {
         moment().locale('fr')
-        fetch("http://192.168.1.32:420/api")
+        fetch("https://apiturtleproject.herokuapp.com/api")
             .then((response) => {return response.json()})
-            .then((obj) => {setTime(obj.time) ; setLatitude(obj.coordinates.latitude) ; setLongitude(obj.coordinates.longitude)})
+            .then((obj) => {setTime(moment().format('LTS')) ; setLatitude(Number(obj[obj.length-1].latitude)*1) ; setLongitude(Number(obj[obj.length-1].longitude)*1)})
         const interval = setInterval(() => {
-            fetch("http://192.168.1.32:420/api")
+            fetch("https://apiturtleproject.herokuapp.com/api")
             .then((response) => {return response.json()})
-            .then((obj) => {setTime(obj.time) ; setLatitude(obj.coordinates.latitude) ; setLongitude(obj.coordinates.longitude)})
+            .then((obj) => {setTime(moment().format('LTS')) ; setLatitude(Number(obj[obj.length-1].latitude) * 1) ; setLongitude(Number(obj[obj.length-1].longitude)*1)})
         },60000)   
     } , [])
 
