@@ -51,7 +51,7 @@ const Home = () => {
     return (
         
         <View  >
-            <MapView  style={styles.mapStyle} >
+            <MapView  style={styles.mapStyle}  >
                 {longitude? 
                 <Marker title="🐢" description={time} coordinate={{latitude : latitude , longitude : longitude}} />
                 :
@@ -66,8 +66,8 @@ const Home = () => {
             <View  style={styles.bottomBar}>
                 {time?
                 <View>
-                    <Text  style={{color: "white" , fontWeight : "800" ,fontSize:34}}>{time}</Text>
-                    <Text style={{color: "white" ,fontWeight : "500", fontSize:24}}>Derniere position: </Text>
+                    <Text  style={{color: "white" , fontWeight : "800" ,fontSize:24}}>{time}</Text>
+                    <Text style={{color: "white" ,fontWeight : "500", fontSize:14}}>Last location: </Text>
                     <View style={{paddingBottom :10 , paddingTop : 10}}>
                     <Text style={{color: "white"}}>{latitude}</Text>
                     <Text style={{color: "white"}}>{longitude}</Text>
